@@ -1,4 +1,4 @@
-package binarytree.tree
+package tree.model
 
 open class BinaryTree(value: Int) {
     var value = value
@@ -15,6 +15,14 @@ open class BinaryTree(value: Int) {
     }
 }
 
+/**
+ * returned tree will be:
+ *           4
+ *         2    5
+ *       1  3  6  7
+ *
+ * PS: can be used for Binary Tree or BST problems
+ */
 fun buildTree(): BinaryTree {
     val node7 = BinaryTree(7)
     val node6 = BinaryTree(5)

@@ -1,7 +1,7 @@
-package binarytree
+package tree.binarytree
 
-import binarytree.tree.BinaryTree
-import binarytree.tree.buildTree
+import tree.model.BinaryTree
+import tree.model.buildTree
 
 /**
  * Time: O(N)
