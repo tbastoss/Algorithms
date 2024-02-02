@@ -1,4 +1,4 @@
-package com.org.general
+package general
 
 fun main() {
     fibonacci(4).forEach {

@@ -1,4 +1,4 @@
-package org.example.array
+package array
 
 /**
  * Given an array of integers between of 1 ... n, where n is the length of the array,

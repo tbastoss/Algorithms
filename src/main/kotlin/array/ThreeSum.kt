@@ -1,4 +1,4 @@
-package org.example.array
+package array
 
 fun main() {
     val array = mutableListOf(10, 2, -1, 3, 99, 13) // [-1, 2, 3, 10, 13, 99]
