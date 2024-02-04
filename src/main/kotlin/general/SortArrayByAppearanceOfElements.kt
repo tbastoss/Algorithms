@@ -1,45 +1,46 @@
 package general
 
-import java.util.*
-
 //    Input =   [4, 5, 6, 5, 4, 3]
 //    Output =  [3, 6, 4, 4, 5, 5] -> 3 and 6 (appears 1) 4 and 5 (appears 2)
 fun main() {
     val test = arrayOf(4, 5, 6, 5, 4, 3)
-    sortArrayByAppearanceOfElements(test).forEach {
-        print("$it, ")
+    val test1 = arrayOf(1, 2, 3, 4, 5)
+    val result = sortArrayByAppearanceOfElements(test)
+
+    print("[")
+    result.forEachIndexed { index, element ->
+        if (result.lastIndex == index) print("$element") else print("$element, ")
     }
+    println("]")
 }
 
 fun sortArrayByAppearanceOfElements(array: Array<Int>): Array<Int> {
-    val map = hashMapOf<Int, Int>()
+    println(array.toList().toString())
+    val elementToCountMap = hashMapOf<Int, Int>()
     array.forEach { el ->
-        map[el]?.let { count ->
-            map[el] = count + 1
+        elementToCountMap[el]?.let { count ->
+            elementToCountMap[el] = count + 1
         } ?: run {
-            map[el] = 1
+            elementToCountMap[el] = 1
         }
     }
-    println(map)
+    println(elementToCountMap)
 
-    val comparator = Comparator<Map.Entry<Int, Int>> { o1, o2 ->
-        if (o1.value == o2.value) 0
-        else if (o1.value < o2.value) -1
-        else 1
+    val countToListOfElementsMap = hashMapOf<Int, MutableList<Int>>()
+    array.forEach { element ->
+        val elementCount = elementToCountMap[element]!!
+        countToListOfElementsMap[elementCount]?.add(element) ?: countToListOfElementsMap.put(elementCount, mutableListOf(element))
     }
-    val pq = PriorityQueue(comparator)
-    map.forEach { pq.add(it) }
-    println(pq)
-
+    println(countToListOfElementsMap)
 
     val result = mutableListOf<Int>()
-    pq.groupBy { it.value }.entries.forEach { entry ->
-        for (i in 0 ..< entry.key) {
-            entry.value.forEach {
-                result.add(it.key)
-            }
+    for (possibleRep in array.indices) {
+        countToListOfElementsMap[possibleRep]?.let {
+            it.sort()
+            result.addAll(it)
         }
     }
     println(result)
-    return arrayOf()
+
+    return result.toTypedArray()
 }
