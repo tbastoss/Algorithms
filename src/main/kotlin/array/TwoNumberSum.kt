@@ -8,14 +8,14 @@ fun main() {
 
 // O(N) time | O(N) Space
 fun twoNumberSum(array: MutableList<Int>, targetSum: Int): List<Int> {
-    val visitedNums = mutableMapOf<Int, Boolean>()
+    val visitedNums = mutableSetOf<Int>()
 
     array.forEach { y ->
         val x = targetSum - y // x + y = target
-        visitedNums[x]?.let {
+        if (visitedNums.contains(x)) {
             return listOf(x, y)
-        } ?: run {
-            visitedNums.put(y, true)
+        } else {
+            visitedNums.add(y)
         }
     }
     // Write your code here.
