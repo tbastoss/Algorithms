@@ -1,5 +1,15 @@
 package string
 
+fun main() {
+    val input = mutableListOf("abc", "bcd", "cbaccd")
+    val result = commonCharacters(input)
+    println(result.toString())
+}
+
+/**
+ * This is a O (n*m) for Time and O(m) for space, where n is the number of strings and
+ * m is the length of the longest string
+ */
 fun commonCharacters(strings: MutableList<String>): List<String> {
     val smallestString = smallestString(strings)
     val potentialCommonCharacters = smallestString.toList().toMutableSet()
