@@ -1,29 +1,32 @@
 package tree.bst
 
 fun main() {
-    val list = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    val listAlgoExpert = listOf(0, 1, 21, 33, 45, 45, 61, 71, 72, 73)
+    println(binarySearch(listAlgoExpert, 33))
     val list2 = listOf("a", "b", "c", "d")
-    println("index: ${biSearch(list, 6)}")
-    println("index: ${biSearch(list2, "b")}")
+    println("index: ${binarySearchString(list2, "b")}")
 }
 
-fun biSearch(list: List<Int>, el: Int): Int {
+/**
+ * This is a O(log(n)) Time and O(1) Space solution, where n is the length of the array.
+ */
+fun binarySearch(array: List<Int>, target: Int): Int {
     var start = 0
-    var end = list.size - 1
+    var end = array.size - 1
 
     while (start <= end) {
         val mid = start + ((end - start) / 2)
         when {
-            el > list[mid] -> start = mid + 1
-            el < list[mid] -> end = mid - 1
-            el == list[mid] -> return mid
+            target > array[mid] -> start = mid + 1
+            target < array[mid] -> end = mid - 1
+            target == array[mid] -> return mid
         }
     }
 
     return -1
 }
 
-fun biSearch(list: List<String>, el: String): Int {
+fun binarySearchString(list: List<String>, el: String): Int {
     var start = 0
     var end = list.size - 1
 
